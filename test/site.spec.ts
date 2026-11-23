@@ -37,42 +37,46 @@ test('navigates all pages, serves crawlable content, and fits the viewport', asy
   expect(errors).toEqual([])
 })
 
-test('service grid reveals pricing without moving the quote link', async ({ page }) => {
-  await page.goto('/services')
-  await expect(page.locator('.services-list .service-grid')).toHaveCount(1)
-  const card = page.locator('.service-card').filter({ has: page.getByRole('link', { name: 'Details about Pressure Washing' }) })
-  const details = card.locator('.card-preview')
-  const toggle = card.getByRole('button', { name: 'Quick info for Pressure Washing' })
-  const quote = card.getByRole('link', { name: 'Pressure Washing: Instant Quote' })
-  const price = card.getByText('$120–$200 for a driveway', { exact: true })
-  const quotePosition = () => quote.evaluate((element) => {
-    const rect = element.getBoundingClientRect()
-    return { x: rect.x, y: rect.y + window.scrollY }
-  })
-  const originalPosition = await quotePosition()
-  await expect(details).toBeHidden()
-  await expect(price).toBeHidden()
-  await expect(card.getByText('Clear grime and algae from driveways, pavers, and patios.', { exact: true })).toBeHidden()
-  if (await page.evaluate(() => matchMedia('(hover: hover)').matches)) {
-    await quote.hover()
+for (const path of ['/', '/services']) {
+  test('service grid reveals pricing without moving the quote link on ' + path, async ({ page }) => {
+    await page.goto(path)
+    await page.evaluate(() => document.fonts.ready)
+    await expect(page.locator('.service-grid')).toHaveCount(1)
+    await expect(page.locator('.service-card')).toHaveCount(13)
+    const card = page.locator('.service-card').filter({ has: page.getByRole('link', { name: 'Details about Pressure Washing' }) })
+    const details = card.locator('.card-preview')
+    const toggle = card.getByRole('button', { name: 'Quick info for Pressure Washing' })
+    const quote = card.getByRole('link', { name: 'Pressure Washing: Instant Quote' })
+    const price = card.getByText('$120–$200 for a driveway', { exact: true })
+    const quotePosition = () => quote.evaluate((element) => {
+      const rect = element.getBoundingClientRect()
+      return { x: rect.x, y: rect.y + window.scrollY }
+    })
+    const originalPosition = await quotePosition()
+    await expect(details).toBeHidden()
+    await expect(price).toBeHidden()
+    await expect(card.getByText('Clear grime and algae from driveways, pavers, and patios.', { exact: true })).toBeHidden()
+    if (await page.evaluate(() => matchMedia('(hover: hover)').matches)) {
+      await quote.hover()
+      await expect(price).toBeVisible()
+      expect(await quotePosition()).toEqual(originalPosition)
+      await page.keyboard.press('Escape')
+      await expect(details).toBeHidden()
+      await page.mouse.move(5, 5)
+      await toggle.focus()
+      await page.keyboard.press('Enter')
+    } else {
+      await toggle.tap()
+    }
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    await expect(details).toContainText('surface grime and algae')
     await expect(price).toBeVisible()
     expect(await quotePosition()).toEqual(originalPosition)
-    await page.keyboard.press('Escape')
+    await toggle.click()
     await expect(details).toBeHidden()
-    await page.mouse.move(5, 5)
-    await toggle.focus()
-    await page.keyboard.press('Enter')
-  } else {
-    await toggle.tap()
-  }
-  await expect(toggle).toHaveAttribute('aria-expanded', 'true')
-  await expect(details).toContainText('surface grime and algae')
-  await expect(price).toBeVisible()
-  expect(await quotePosition()).toEqual(originalPosition)
-  await toggle.click()
-  await expect(details).toBeHidden()
-  expect(await quotePosition()).toEqual(originalPosition)
-})
+    expect(await quotePosition()).toEqual(originalPosition)
+  })
+}
 
 test('call link and instant quotes are available from the homepage and service pages', async ({ page }) => {
   await page.goto('/')

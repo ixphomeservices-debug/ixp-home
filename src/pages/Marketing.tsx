@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import {
-  ClipboardCheck, Hammer, Wrench, MapPin, ChevronDown,
+  MapPin, ChevronDown,
   MessageSquare, ScanSearch, CalendarCheck, ListChecks, Focus, Check, Mail, Phone, BadgeCheck
 } from 'lucide-react'
 import { business } from '../config/business'
@@ -15,7 +15,6 @@ import { EstimateForm } from '../components/EstimateForm'
 import { BbbSeal } from '../components/BbbSeal'
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 
-const groupIcons = [Wrench, Hammer, ClipboardCheck]
 const steps = [
   { icon: MessageSquare, title: 'Tell us about your property', description: 'Share the service you need, the property location, and what you’d like us to know.' },
   { icon: ListChecks, title: 'Receive a personalized estimate', description: 'We’ll follow up about your priorities, confirm the scope, and discuss a quote.' },
@@ -48,18 +47,13 @@ function EndCta({ service }: { service?: string }) {
   </div></section>
 }
 
-function ServiceCard({ service, expandable = false }: { service: (typeof serviceContent)[number]; expandable?: boolean }) {
+function ServiceCard({ service, Heading }: { service: (typeof serviceContent)[number]; Heading: 'h2' | 'h3' }) {
   const [detailsMode, setDetailsMode] = useState<'hover' | 'open' | null>(null)
   const detailsOpen = detailsMode !== null
   const detailsId = useId()
   const detailsButton = useRef<HTMLButtonElement>(null)
   const price = quotePlans[service.slug]
   const path = '/services/' + service.slug
-  const photo = <Photo photo={service.photo} sizes="(max-width: 350px) 100vw, (max-width: 790px) 50vw, (max-width: 1020px) 33vw, 25vw" />
-  const pricing = <div className="card-price">
-    <span>{price ? price.source ? 'Local planning range' : 'IXP Homes pricing' : 'Project pricing'}</span>
-    <strong>{price?.summary ?? 'Custom quote'}</strong>
-  </div>
   useEffect(() => {
     if (!detailsOpen) return
     function closeOnEscape(event: KeyboardEvent) {
@@ -71,45 +65,38 @@ function ServiceCard({ service, expandable = false }: { service: (typeof service
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [detailsId, detailsOpen])
 
-  return <article className={expandable ? 'service-card service-card-expandable' : 'service-card'}
-    onPointerEnter={expandable ? (event) => { if (event.pointerType === 'mouse') setDetailsMode((mode) => mode ?? 'hover') } : undefined}
-    onPointerLeave={expandable ? (event) => { if (event.pointerType === 'mouse') setDetailsMode((mode) => mode === 'hover' ? null : mode) } : undefined}>
-    {expandable ? <div className="card-image">{photo}</div> : <Link to={path} className="card-image" aria-label={service.title}>{photo}</Link>}
+  return <article className="service-card"
+    onPointerEnter={(event) => { if (event.pointerType === 'mouse') setDetailsMode((mode) => mode ?? 'hover') }}
+    onPointerLeave={(event) => { if (event.pointerType === 'mouse') setDetailsMode((mode) => mode === 'hover' ? null : mode) }}>
+    <div className="card-image">
+      <Photo photo={service.photo} sizes="(max-width: 350px) 100vw, (max-width: 790px) 50vw, (max-width: 1020px) 33vw, 25vw" />
+    </div>
     <div className="card-body">
-      {expandable
-        ? <h2 className="card-title"><Link to={path} aria-label={'Details about ' + service.title}>{service.title}</Link></h2>
-        : <h4 className="card-title">{service.title}</h4>}
-      {!expandable && <><p>{service.cardDescription}</p>{pricing}</>}
+      <Heading className="card-title"><Link to={path} aria-label={'Details about ' + service.title}>{service.title}</Link></Heading>
       <div className="card-links">
-        {expandable
-          ? <button ref={detailsButton} type="button" aria-label={'Quick info for ' + service.title}
-              aria-controls={detailsId} aria-expanded={detailsOpen}
-              onClick={() => setDetailsMode((mode) => mode === 'open' ? null : 'open')}>Quick Info</button>
-          : <Link to={path} aria-label={'Details about ' + service.title}>Details</Link>}
+        <button ref={detailsButton} type="button" aria-label={'Quick info for ' + service.title}
+          aria-controls={detailsId} aria-expanded={detailsOpen}
+          onClick={() => setDetailsMode((mode) => mode === 'open' ? null : 'open')}>Quick Info</button>
         {price
           ? <InstantQuoteLink className="text-link" service={service.slug}><span className="sr-only">{service.title}: </span>Instant Quote</InstantQuoteLink>
           : <EstimateLink className="text-link" service={service.slug}><span className="sr-only">{service.title}: </span>Get a Quote</EstimateLink>}
       </div>
     </div>
-    {expandable && <div className="card-preview" id={detailsId} hidden={!detailsOpen}
+    <div className="card-preview" id={detailsId} hidden={!detailsOpen}
       role="region" aria-label={service.title + ' quick info'} tabIndex={0}>
-      {pricing}
+      <div className="card-price">
+        <span>{price ? price.source ? 'Local planning range' : 'IXP Homes pricing' : 'Project pricing'}</span>
+        <strong>{price?.summary ?? 'Custom quote'}</strong>
+      </div>
       <p>{service.description}</p>
-    </div>}
+    </div>
   </article>
 }
 
-function ServiceCards() {
-  return <div className="service-directory">
-    {serviceGroups.map((group, index) => {
-      const Icon = groupIcons[index]
-      return <section className="service-group" key={group}>
-        <h3><Icon size={22} aria-hidden="true" />{group}</h3>
-        <div className="service-grid">
-          {serviceContent.filter((service) => service.group === group).map((service) => <ServiceCard key={service.slug} service={service} />)}
-        </div>
-      </section>
-    })}
+function ServiceCards({ heading = 'h2' }: { heading?: 'h2' | 'h3' }) {
+  return <div className="service-grid">
+    {serviceGroups.flatMap((group) => serviceContent.filter((service) => service.group === group))
+      .map((service) => <ServiceCard key={service.slug} service={service} Heading={heading} />)}
   </div>
 }
 
@@ -171,7 +158,7 @@ export function Home() {
     </section>
     <section id="services" className="section services-home"><div className="wrap">
       <div className="section-title"><h2>Our Services</h2><p className="lede">Explore what each service covers and what to budget.</p></div>
-      <ServiceCards /><p className="photo-note">{images.demoCaption}</p>
+      <ServiceCards heading="h3" /><p className="photo-note">{images.demoCaption}</p>
     </div></section>
     <PhotoPanel photo={images.maintenance} label="About IXP Homes" title="Property care, tailored to your home." reverse>
       <p>Every home has its own details, materials, and maintenance needs. We help Northeast Florida homeowners understand their property and plan services around its condition and their priorities.</p>
@@ -200,10 +187,7 @@ export function Services() {
   return <>
     <PageIntro compact title="Our Services" description="Home repairs, installations, landscaping projects, and inspections in Jacksonville and Northeast Florida." />
     <section className="section services-list"><div className="wrap">
-      <div className="service-grid">
-        {serviceGroups.flatMap((group) => serviceContent.filter((service) => service.group === group))
-          .map((service) => <ServiceCard key={service.slug} service={service} expandable />)}
-      </div>
+      <ServiceCards />
       <p className="photo-note">{images.demoCaption}</p>
     </div></section>
     <EndCta />

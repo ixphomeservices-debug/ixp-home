@@ -8,7 +8,6 @@ type Service = {
   slug: ServiceSlug
   group: (typeof serviceGroups)[number]
   title: string
-  cardDescription: string
   description: string
   seo: string
   intro: string
@@ -19,7 +18,6 @@ type Service = {
 export const serviceContent: Service[] = [
   {
     slug: 'home-inspections', group: 'Inspections & property care', title: 'Home Inspections',
-    cardDescription: 'Know the home’s condition before buying, selling, or repairing.',
     description: 'Get a clearer picture of a home’s condition before you buy, list it, or decide which repairs to tackle.',
     seo: 'Jacksonville Home Inspections',
     intro: 'A residential inspection looks at visible, accessible parts of the home. Share any concerns up front so we can discuss the areas to focus on and the information you need for your next decision.',
@@ -29,7 +27,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'pressure-washing', group: 'Repair & maintenance', title: 'Pressure Washing',
-    cardDescription: 'Clear grime and algae from driveways, pavers, and patios.',
     description: 'Wash away surface grime and algae from driveways, patios, pavers, and walkways with an approach suited to the material.',
     seo: 'Pressure Washing in Jacksonville, FL',
     intro: 'Concrete, pavers, and painted surfaces need different cleaning approaches. We’ll ask about the material, the type of buildup, and access to water before recommending how to clean the area.',
@@ -39,7 +36,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'dryer-vent-cleaning', group: 'Repair & maintenance', title: 'Dryer Vent Cleaning',
-    cardDescription: 'Clear lint from accessible ducting and the outside vent.',
     description: 'Remove lint from accessible dryer exhaust ducting and the outside vent so air has a clear path out.',
     seo: 'Dryer Vent Cleaning in Jacksonville, FL',
     intro: 'If loads take longer to dry or lint collects at the exterior vent, cleaning the exhaust may help. The scope depends on where the vent exits, how the duct runs, and how easily it can be reached.',
@@ -49,7 +45,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'home-maintenance', group: 'Repair & maintenance', title: 'Handyman & Home Maintenance',
-    cardDescription: 'Tackle minor repairs, assembly, and routine upkeep.',
     description: 'Work through your household to-do list, from minor repairs and furniture assembly to seasonal upkeep.',
     seo: 'Property Maintenance in Jacksonville',
     intro: 'Send us the jobs you’ve been putting off, whether it’s one repair or a list spanning several rooms. We’ll help you prioritize the work and identify what can be handled in the same visit.',
@@ -59,7 +54,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'luxury-property-care', group: 'Inspections & property care', title: 'Luxury Property Care',
-    cardDescription: 'Plan inspections and care for waterfront and specialty homes.',
     description: 'Coordinate inspections, exterior cleaning, and seasonal upkeep for waterfront homes and properties with specialty finishes.',
     seo: 'Luxury Property Care in Ponte Vedra Beach',
     intro: 'Salt air, shaded patios, and specialty materials can all affect how a home needs to be maintained. We plan around the surfaces, access, and priorities of your property.',
@@ -69,7 +63,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'flooring-installation', group: 'Installations & improvements', title: 'Flooring Installation',
-    cardDescription: 'Install hardwood, laminate, or luxury vinyl plank.',
     description: 'Install hardwood, laminate, or luxury vinyl plank with clean transitions between rooms, hallways, and doorways.',
     seo: 'Flooring Installation in Jacksonville, FL',
     intro: 'New flooring starts below the surface. We’ll discuss the condition of the existing floor, how the material will be laid, and how the edges and transitions will meet adjacent rooms.',
@@ -79,7 +72,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'tile-installation', group: 'Installations & improvements', title: 'Tile Installation',
-    cardDescription: 'Set ceramic or porcelain tile on floors, walls, and backsplashes.',
     description: 'Install porcelain or ceramic tile on floors, backsplashes, and bathroom walls, with attention to layout and grout lines.',
     seo: 'Tile Installation in Jacksonville, FL',
     intro: 'The tile pattern affects how cuts fall at corners, outlets, and edges. We’ll talk through the layout and finish, and review surface preparation when the project involves a shower or other wet area.',
@@ -89,7 +81,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'interior-painting', group: 'Installations & improvements', title: 'Interior Painting',
-    cardDescription: 'Refresh walls, ceilings, doors, and trim.',
     description: 'Refresh a room or several living areas with walls, ceilings, doors, and trim painted to suit the space.',
     seo: 'Interior Painting in Jacksonville, FL',
     intro: 'Preparation shapes the final finish. We’ll confirm which surfaces need paint, whether minor repairs are needed, and the color and sheen you want for each area.',
@@ -99,7 +90,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'landscaping-projects', group: 'Installations & improvements', title: 'Landscaping Projects',
-    cardDescription: 'Refresh garden beds with new planting, mulch, and edging.',
     description: 'Update your entry or outdoor space with a one-time landscaping project, from planting and mulch to defined bed edges.',
     seo: 'Landscaping Projects in Jacksonville, FL',
     intro: 'Tell us what you want to change about the space. We’ll discuss the existing plants, sunlight, access, and materials so the estimate fits your garden beds and the look you want.',
@@ -109,7 +99,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'drywall-repair', group: 'Repair & maintenance', title: 'Drywall Repair',
-    cardDescription: 'Patch damaged walls and blend the surrounding texture.',
     description: 'Patch holes, dents, and damaged drywall, then blend the repair with the surrounding texture for a paint-ready finish.',
     seo: 'Drywall Repair in Jacksonville, FL',
     intro: 'A small wall patch and a damaged ceiling call for different preparation. Photos and rough dimensions help us assess the repair, including how to match the existing texture.',
@@ -119,7 +108,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'door-installation', group: 'Installations & improvements', title: 'Door Installation',
-    cardDescription: 'Fit replacement doors and check the frame, swing, and hardware.',
     description: 'Replace interior or exterior doors with attention to the fit of the frame, the swing, and how the hardware operates.',
     seo: 'Door Installation in Jacksonville, FL',
     intro: 'A sound frame may only need a replacement door, while a worn jamb may need more work. We’ll review the opening, hardware, and access before confirming the installation scope.',
@@ -129,7 +117,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'tv-mounting', group: 'Installations & improvements', title: 'TV Mounting',
-    cardDescription: 'Mount your TV at a comfortable height with the right bracket.',
     description: 'Mount your TV at a comfortable viewing height with a bracket suited to the screen and wall.',
     seo: 'TV Mounting in Jacksonville, FL',
     intro: 'We’ll talk through where you sit, what the wall is made of, and whether you want the screen fixed, tilted, or able to swivel. Outlet location and cable routing can affect the placement.',
@@ -139,7 +126,6 @@ export const serviceContent: Service[] = [
   },
   {
     slug: 'trim-carpentry', group: 'Installations & improvements', title: 'Trim Carpentry',
-    cardDescription: 'Finish rooms with baseboards, crown molding, and casing.',
     description: 'Finish a room with fitted baseboards, crown molding, or door and window casing that suits the rest of your home.',
     seo: 'Trim Carpentry in Jacksonville, FL',
     intro: 'The profile, material, and number of corners affect the fit and finish. Share a rough measurement and a photo of any trim you want to match so we can review the options.',

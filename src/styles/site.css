@@ -108,35 +108,26 @@ main:focus, h2[tabindex]:focus { outline: none; }
 .hero-seal { position: absolute; left: 0; bottom: 1.25rem; }
 .hero-seal img { width: 128px; }
 
-.service-directory { display: grid; gap: clamp(1.65rem, 3.4vw, 3rem); }
 .services-home, .services-list { padding-block: clamp(1.75rem, 3.5vw, 3.5rem); }
 .services-home .section-title h2 { margin-top: 0; }
 .services-home .section-title .lede { margin-top: .35rem; }
-.services-home .service-directory { margin-top: 1.55rem; }
-.services-list .service-grid { margin-top: 0; }
-.service-group > h3 { display: flex; align-items: center; gap: .5rem; font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
-.service-group > h3 svg { flex: none; color: var(--accent); }
-.service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; margin-top: .75rem; }
-.service-card { overflow: hidden; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid var(--line); background: #fff; min-width: 0; }
-.card-image { display: block; aspect-ratio: 2.05; overflow: hidden; background: #cce4de; }
+.services-home .service-grid { margin-top: 1.55rem; }
+.service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+.service-card { --card-photo-ratio: 1.8; position: relative; overflow: hidden; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid var(--line); background: #fff; min-width: 0; }
+.card-image { aspect-ratio: var(--card-photo-ratio); overflow: hidden; background: #cce4de; }
 .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
 .card-image:hover img { transform: scale(1.04); }
 .card-body { display: flex; flex-direction: column; flex: 1; padding: .88rem; gap: .42rem; line-height: 1.45; }
 .feature-grid svg { color: var(--accent); }
 .card-body .card-title { font-family: var(--font-display); font-size: clamp(1.18rem, 1.7vw, 1.6rem); line-height: 1.15; letter-spacing: -.025em; }
-.service-card-expandable { --card-photo-ratio: 1.8; position: relative; }
-.service-card-expandable .card-image { aspect-ratio: var(--card-photo-ratio); }
-.service-card-expandable .card-title a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .14em; }
-.service-card-expandable .card-links { margin-top: auto; }
+.card-title a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: .14em; }
 .card-preview:not([hidden]) { position: absolute; inset: 0 0 auto; aspect-ratio: var(--card-photo-ratio); overflow: auto; overscroll-behavior: contain; scrollbar-color: #8ce5d8 #164449; display: grid; align-content: safe center; gap: .45rem; padding: .7rem; background: #103638f5; color: white; line-height: 1.35; animation: appear .2s ease-out; }
-.card-preview .card-price { margin: 0; padding: 0; color: var(--on-dark); }
-.card-preview .card-price span { color: #dcf4ef; }
-.card-preview .card-price strong { font-size: 1rem; }
+.card-price { display: grid; gap: .05rem; color: var(--on-dark); }
+.card-price span { color: #dcf4ef; font-size: .875rem; }
+.card-price strong { font-size: 1rem; }
 .card-preview:focus-visible { outline-color: var(--on-dark); outline-offset: -4px; }
-.card-body p, .feature-grid p { color: var(--muted); }
-.card-price { display: grid; gap: .05rem; margin-top: auto; padding-top: .35rem; color: var(--ink); }
-.card-price span { color: var(--muted); font-size: .875rem; }
-.card-links { display: flex; flex-wrap: wrap; gap: 0 .6rem; border-top: 1px solid var(--line); font-size: .875rem; }
+.feature-grid p { color: var(--muted); }
+.card-links { display: flex; flex-wrap: wrap; gap: 0 .6rem; margin-top: auto; border-top: 1px solid var(--line); font-size: .875rem; }
 .card-links :is(a, button) { display: inline-flex; align-items: center; min-height: 2rem; font-weight: 800; text-underline-offset: .2em; text-decoration: underline; }
 .photo-note, figcaption { color: var(--muted); font-size: .875rem; margin-top: .55rem; }
 .split { border-block: 1px solid var(--line); }
@@ -314,8 +305,7 @@ main:focus, h2[tabindex]:focus { outline: none; }
   .header-contact-inner > span { display: none; }
   .feature-grid { grid-template-columns: 1fr; }
   .service-grid { gap: .6rem; }
-  .card-image { aspect-ratio: 1.85; }
-  .service-card-expandable { --card-photo-ratio: 1.35; }
+  .service-card { --card-photo-ratio: 1.35; }
   .card-body { padding: .65rem; }
   .card-links { gap: 0 .4rem; }
   .hero h1 { font-size: clamp(1.95rem, 9.4vw, 3.65rem); }
