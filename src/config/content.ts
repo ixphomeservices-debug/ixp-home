@@ -139,7 +139,7 @@ export const pageData: Record<string, { title: string; description: string }> = 
   '/': { title: 'Jacksonville Home Services, Repairs & Landscaping', description: 'Explore Jacksonville home services from IXP Homes, including inspections, repairs, installations, landscaping projects, and property maintenance.' },
   '/services': { title: 'Home Services in Jacksonville, FL', description: 'Explore flooring, tile, painting, landscaping projects, handyman repairs, inspections, and cleaning services in Northeast Florida.' },
   '/instant-quote': { title: 'Instant Home Service Quote', description: 'Get a quick planning estimate for home repairs, installations, cleaning, and more in the Jacksonville area.' },
-  '/about': { title: 'About IXP Homes', description: 'Learn how IXP Homes approaches home inspections and property upkeep for Jacksonville-area homeowners.' },
+  '/about': { title: 'About IXP Homes', description: 'Meet IXP Homes, a Jacksonville-area home services business. Learn how we approach inspections, repairs, installations, and landscaping projects.' },
   '/service-areas': { title: 'Service Areas in Northeast Florida', description: 'Request property services in Jacksonville, Ponte Vedra Beach, the Jacksonville beaches, Nocatee, St. Johns, and Amelia Island.' },
   '/contact': { title: 'Contact IXP Homes', description: 'Contact IXP Homes about home repairs, installations, landscaping projects, cleaning, or inspections in Northeast Florida.' },
   '/estimate': { title: 'Request a Free Service Estimate', description: 'Tell IXP Homes about your Jacksonville-area property and request a no-obligation service estimate.' },

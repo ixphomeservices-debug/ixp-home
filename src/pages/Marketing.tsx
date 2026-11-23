@@ -9,7 +9,6 @@ import { quotePlans } from '../config/pricing'
 import { images, type Photo as PhotoData } from '../config/images'
 import { Comparison } from '../components/Comparison'
 import { Photo } from '../components/Photo'
-import { PhotoGallery } from '../components/PhotoGallery'
 import { EstimateLink, InstantQuoteLink } from '../components/links'
 import { EstimateForm } from '../components/EstimateForm'
 import { BbbSeal } from '../components/BbbSeal'
@@ -214,26 +213,6 @@ export function ServiceDetails({ slug }: { slug: string }) {
       <SectionTitle label="Before & after" title="Compare stained and cleaned pavers." /><Comparison />
     </div></section>}
     <EndCta service={slug} />
-  </>
-}
-
-export function About() {
-  return <>
-    <PageIntro compact title="About IXP Homes" description="We help Northeast Florida homeowners plan repairs, installations, inspections, and property care." />
-    <PhotoPanel photo={{ ...images.hero, caption: images.demoCaption }} label="Our approach" title="We start with your property.">
-      <p>We ask what you need to learn or maintain, discuss access and timing, and confirm what the service can cover. You can start with one priority or share a list of services you’re considering.</p>
-      <Link className="button secondary" to="/services">Explore Our Services</Link>
-    </PhotoPanel>
-    <Principles />
-    <section className="section"><div className="wrap">
-      <SectionTitle label="In the field" title="What property care looks like." description={images.demoCaption} />
-      <PhotoGallery photos={[
-        { ...images.inspection, caption: "Inspecting visible conditions around a window." },
-        { ...images.dryerVent, caption: "Clearing buildup from an exterior dryer vent." },
-        { ...images.washing, caption: "Cleaning an exterior paver surface." }
-      ]} />
-    </div></section>
-    <EndCta />
   </>
 }
 

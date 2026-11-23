@@ -9,7 +9,8 @@ import { Chat } from './components/Chat'
 import { BbbSeal } from './components/BbbSeal'
 import { EstimatePopup } from './components/EstimatePopup'
 import { attribution } from './components/tracking'
-import { Home, Services, ServiceDetails, About, ServiceAreas, Contact, Estimate, Legal, NotFound } from './pages/Marketing'
+import { About } from './pages/About'
+import { Home, Services, ServiceDetails, ServiceAreas, Contact, Estimate, Legal, NotFound } from './pages/Marketing'
 
 const nav = [['Home', '/'], ['Services', '/services'], ['About', '/about'], ['Service Areas', '/service-areas'], ['Contact', '/contact']]
 export const missingPage = { title: 'Page Not Found', description: 'Explore the IXP Homes website or return to the homepage.' }

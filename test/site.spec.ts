@@ -37,6 +37,19 @@ test('navigates all pages, serves crawlable content, and fits the viewport', asy
   expect(errors).toEqual([])
 })
 
+test('the homepage and header link to the dedicated About page', async ({ page }) => {
+  await page.goto('/')
+  await page.getByRole('main').getByRole('link', { name: 'About IXP Homes', exact: true }).click()
+  await expect(page).toHaveURL(/\/about$/)
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('About IXP Homes')
+  await expect(page.getByRole('heading', { name: 'What to expect' })).toBeVisible()
+  await expect(page.getByRole('main').getByRole('link', { name: 'See Service Areas' })).toHaveAttribute('href', '/service-areas')
+  await expect(page.getByRole('main').getByRole('link', { name: /Call \(904\) 899-2003/ })).toHaveAttribute('href', 'tel:+19048992003')
+  await page.goto('/services')
+  await nav(page, 'About')
+  await expect(page).toHaveURL(/\/about$/)
+})
+
 for (const path of ['/', '/services']) {
   test('service grid reveals pricing without moving the quote link on ' + path, async ({ page }) => {
     await page.goto(path)
