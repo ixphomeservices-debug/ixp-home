@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 286 62" role="img" aria-label="IXP Homes. Inspections and property care.">
+  <rect x="1" y="1" width="58" height="58" rx="10" fill="#E2F4F0"/>
+  <path d="m39.4 39.4 11.4 11.4" fill="none" stroke="#0B5454" stroke-width="4.1" stroke-linecap="round"/>
+  <circle cx="26.5" cy="26.5" r="18.5" fill="none" stroke="#0B5454" stroke-width="2.9"/>
+  <path d="m16.2 24.1 10.3-8.5 10.3 8.5v10.7H16.2Z" fill="none" stroke="#103638" stroke-width="1.75" stroke-linejoin="round"/>
+  <path d="M20.25 25.1v6.5m3.5-6.5 4.5 6.5m0-6.5-4.5 6.5m7.25 0v-6.5h2.1a1.65 1.65 0 0 1 0 3.3H31" fill="none" stroke="#103638" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="73" y="30.5" fill="#103638" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="-.8" textLength="185" lengthAdjust="spacingAndGlyphs">IXP HOMES</text>
+  <text x="75" y="46" fill="#005F60" font-family="Arial, sans-serif" font-size="10.4" font-weight="700" letter-spacing=".75" textLength="200" lengthAdjust="spacingAndGlyphs">INSPECTIONS &amp; PROPERTY CARE</text>
+</svg>

@@ -1,0 +1,42 @@
+{
+  "name": "ixp-home",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x",
+    "npm": "11.x"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
+    "heroku-postbuild": "npm run build",
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "check": "tsc --noEmit",
+    "lint": "oxlint src server shared scripts test vite.config.ts",
+    "test": "node --test test/*.test.mjs",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.3.0",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@playwright/test": "^1.58.0",
+    "@tailwindcss/vite": "^4.2.0",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "lucide-react": "^1.56.0",
+    "oxlint": "^1.88.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router": "^7.13.0",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.4"
+  }
+}
