@@ -42,6 +42,9 @@ test('the homepage and header link to the dedicated About page', async ({ page }
   await page.getByRole('main').getByRole('link', { name: 'About IXP Homes', exact: true }).click()
   await expect(page).toHaveURL(/\/about$/)
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('About IXP Homes')
+  const portrait = page.getByRole('img', { name: 'A person in an IXP Home Services polo standing outside a coastal home' })
+  await expect(portrait).toHaveAttribute('src', '/images/about/inspection-portrait.webp')
+  await expect.poll(() => portrait.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0)
   await expect(page.getByRole('heading', { name: 'What to expect' })).toBeVisible()
   await expect(page.getByRole('main').getByRole('link', { name: 'See Service Areas' })).toHaveAttribute('href', '/service-areas')
   await expect(page.getByRole('main').getByRole('link', { name: /Call \(904\) 899-2003/ })).toHaveAttribute('href', 'tel:+19048992003')
@@ -51,6 +54,24 @@ test('the homepage and header link to the dedicated About page', async ({ page }
 })
 
 for (const path of ['/', '/services']) {
+  test('long Quick Info lets the page scroll at the end on ' + path, async ({ page, isMobile }) => {
+    test.skip(isMobile, 'This check uses a mouse wheel')
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto(path)
+    await page.getByRole('button', { name: 'Quick info for Pressure Washing' }).click()
+    const details = page.getByRole('region', { name: 'Pressure Washing quick info' })
+    await details.hover()
+    const available = await details.evaluate((element) => element.scrollHeight - element.clientHeight)
+    expect(available).toBeGreaterThan(0)
+    await page.mouse.wheel(0, Math.min(40, Math.ceil(available / 2)))
+    await expect.poll(() => details.evaluate((element) => element.scrollTop)).toBeGreaterThan(0)
+    await details.evaluate((element) => { element.scrollTop = element.scrollHeight })
+    const previousPageScroll = await page.evaluate(() => window.scrollY)
+    await page.mouse.wheel(0, 160)
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(previousPageScroll)
+  })
+
   test('service grid reveals pricing without moving the quote link on ' + path, async ({ page }) => {
     await page.goto(path)
     await page.evaluate(() => document.fonts.ready)

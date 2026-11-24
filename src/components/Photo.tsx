@@ -7,7 +7,7 @@ export function Photo({ photo, eager = false, className, sizes = '(max-width: 70
   sizes?: string
 }) {
   return <img className={className} src={photo.src}
-    srcSet={photo.small ? photo.small + ' 640w, ' + photo.src + ' 1280w' : undefined}
+    srcSet={photo.small ? photo.small + ' 640w, ' + photo.src + ' ' + (photo.width ?? 1280) + 'w' : undefined}
     sizes={photo.small ? sizes : undefined}
     alt={photo.alt} loading={eager ? 'eager' : 'lazy'} fetchPriority={eager ? 'high' : undefined} decoding="async" />
 }

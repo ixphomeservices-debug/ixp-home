@@ -31,10 +31,6 @@ export function About() {
     <PageIntro compact title="About IXP Homes" description="Local help for home inspections, repairs, and property care in Jacksonville and Northeast Florida." />
     <section className="section" aria-labelledby="about-approach">
       <div className="wrap split-grid reverse about-intro">
-        <figure className="editorial-photo">
-          <Photo photo={images.inspection} eager />
-          <figcaption>Illustrative home inspection photo.</figcaption>
-        </figure>
         <div className="about-copy">
           <h2 id="about-approach">Practical help for the work your home needs.</h2>
           <p>Some projects start with a list of small repairs. Others start with a question about a home you’re buying or a change you want to make outdoors. We help you define the work so you can decide what to tackle first.</p>
@@ -44,6 +40,9 @@ export function About() {
             <Link className="text-link" to="/service-areas">See Service Areas</Link>
           </div>
         </div>
+        <figure className="editorial-photo about-portrait">
+          <Photo photo={images.aboutPortrait} eager sizes="(max-width: 520px) calc(100vw - 2rem), 480px" />
+        </figure>
       </div>
     </section>
     <section className="section pale" aria-labelledby="about-process">

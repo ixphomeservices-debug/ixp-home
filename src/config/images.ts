@@ -1,4 +1,4 @@
-export type Photo = { src: string; small?: string; alt: string; caption?: string }
+export type Photo = { src: string; small?: string; width?: number; alt: string; caption?: string }
 
 function photo(path: string, alt: string): Photo {
   return { src: '/images/' + path + '.webp', small: '/images/' + path + '-sm.webp', alt }
@@ -7,6 +7,10 @@ function photo(path: string, alt: string): Photo {
 export const images = {
   hero: photo('hero/waterfront', 'Coastal waterfront residence with illuminated windows reflected in the water at dusk'),
   inspection: photo('home-inspections/inspection', 'A home inspector examining a window frame with a tablet'),
+  aboutPortrait: {
+    ...photo('about/inspection-portrait', 'A person in an IXP Home Services polo standing outside a coastal home'),
+    width: 960
+  },
   washing: photo('pressure-washing/pavers', 'A technician pressure washing a paver driveway'),
   dryerVent: photo('dryer-vent-cleaning/exterior-vent', 'A technician cleaning an exterior dryer exhaust vent'),
   maintenance: photo('maintenance/entry', 'A technician adjusting a front door handle at a coastal home'),
