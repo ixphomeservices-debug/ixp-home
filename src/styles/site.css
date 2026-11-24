@@ -115,7 +115,7 @@ main:focus, h2[tabindex]:focus { outline: none; }
 .service-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
 .service-card { --card-photo-ratio: 1.8; position: relative; overflow: hidden; border-radius: 12px; display: flex; flex-direction: column; border: 1px solid var(--line); background: #fff; min-width: 0; }
 .card-image { aspect-ratio: var(--card-photo-ratio); overflow: hidden; background: #cce4de; }
-.card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+.card-image img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; transition: transform .35s; }
 .card-image:hover img { transform: scale(1.04); }
 .card-body { display: flex; flex-direction: column; flex: 1; padding: .88rem; gap: .42rem; line-height: 1.45; }
 .feature-grid svg { color: var(--accent); }
